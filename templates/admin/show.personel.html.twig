@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="{{ path('admin') }}">Gestion Du Centre</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarColor01" style="">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('prof_create') }}">Ajouter un professeur</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('personel_create') }}">Ajouter du personnel</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('show_prof') }}">La liste du personnel</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('show_prof') }}">La liste des professeurs</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('show_etd') }}">La liste des étudiants</a>
+                </li>
+            </ul>
+            {% if app %}
+            <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="{{ path('security_logout') }}" class="nav-link">
+                            Déconnexion
+                        </a>
+                    </li>    
+            </ul>
+            {% endif %}
+        </div>
+    </nav>
+<div class="container"><br>
+    <h1> La Liste du personel :</h1><br>
+    <table id="tabPerso" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th scope="row">Nom</th>
+            <th scope="row">Prénom</th>
+            <th scope="row">E-mail</th>
+            <th scope="row">Adresse</th>
+            <th scope="row">CIN</th>
+            <th>Edit/Détail/X</th>
+        </tr>
+    </thead>    
+   <tbody>
+        {% for le in personel %}
+        <tr>
+            <td>{{ le.sereNom }}</td>
+            <td>{{ le.secrPrenom }}</td>
+            <td>{{ le.emailSecr }}</td>
+            <td>{{ le.adresseSecr }}</td>
+            <td>{{ le.cinSecr }}</td>
+            <td>
+                <a href="{{ path('prof_edit', {'id': le.id}) }}" class="btn btn-dark">edit</a>
+                <a href="{{ path('personel_detail', {'id': le.id}) }}" class="btn btn-light">détail</a>
+                <a href="#" class="btn btn-danger delete-personel" data-personel="{{ le.id }}">Delete</a>
+            </td>
+        </tr>
+       {% endfor %}
+    </tbody>     
+    </table>    
+</div>
+{% endblock %}
+{% block javascripts %}
+<script src="/delete/main.js"></script>
+{% endblock %}

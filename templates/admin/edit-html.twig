@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formProf 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="{{ path('admin') }}">Gestion Du Centre</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarColor01" style="">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('prof_create') }}">Ajouter un professeur</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('personel_create') }}">Ajouter du personnel</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('show_personel') }}">La liste des personnels</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('show_etd') }}">La listes des étudiants</a>
+                </li>
+            </ul>
+            {% if app %}
+            <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="{{ path('security_logout') }}" class="nav-link">
+                            Déconnexion
+                        </a>
+                    </li>    
+            </ul>
+            {% endif %}
+        </div>
+    </nav>
+        <div class="container">
+            <br>
+         {% if editMode %}
+                <h1> Modifier les informations du professeur </h1>
+        {% else %}    
+                <h1> Ajouter un professeur </h1>
+        {% endif %}   
+            <br>
+            {{ form_start(formProf) }}
+
+            {{ form_row(formProf.nomProf, {'label':'Nom de le professeur','attr': {'placeholder':'Nom...'}}) }}
+            {{ form_row(formProf.prenomProf, {'label':'Prénom de le professeur','attr': {'placeholder':'Prénom...'}}) }}
+             {{ form_row(formProf.emailProf, {'label':'E-mail de le professeur','attr': {'placeholder':'email...'}}) }}
+            {{ form_row(formProf.cinProf, {'label':'CIN du professeur','attr': {'placeholder':'CIN...'}}) }}
+            {{ form_row(formProf.numTeleProf, {'label':'Numéro du professeur','attr': {'placeholder':'Numéro téléphone...'}}) }}
+            {{ form_row(formProf.adresseProf, {'label':'adresse du professeur','attr': {'placeholder':'adresse...'}}) }}
+            {{ form_row(formProf.numCarteBankProf, {'label':'Numéro CB du professeur','attr': {'placeholder':'Numéro de la carte bancaire...'}}) }}
+            {{ form_row(formProf.salaireProf, {'label':'Salaire du professeur','attr': {'placeholder':'Salaire...'}}) }}
+            {{ form_row(formProf.profMatiere, {'label':'Matière du professeur','attr': {'placeholder':'Matière...'}}) }}
+
+            <br><br>
+            <button type="submit" class="btn btn-success">
+                {% if editMode %}
+                    Enregister
+                {% else %}    
+                    Ajouter ce Professeur
+                {% endif %}    
+            </button>
+            <a class="navbar-brand" href="{{ path('show_prof') }}"><button type="button" class="btn btn-success">Annuler</button></a>
+            <br><br>
+            {{ form_end(formProf) }}
+        </div>
+{% endblock %}    

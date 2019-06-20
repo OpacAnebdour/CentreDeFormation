@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formGroupnew 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+        <div class="container">
+            <br>   
+                <h1> Création d'un nouveau groupe </h1>
+            <br>
+            {{ form_start(formGroupnew) }}
+
+            {{ form_row(formGroupnew.numeroGroupe, {'label':'Code du groupe','attr': {'placeholder':'identifient du groupe...'}}) }}
+            {{ form_row(formGroupnew.nbEtudiant, {'label':'Nembre de personne','attr': {'placeholder':'Entrez :0...'}}) }}
+
+            <br><br>
+            <button type="submit" class="btn btn-success">
+                Enregister  
+            </button>
+            <a class="navbar-brand" href="{{ path('secretaire') }}"><button type="button" class="btn btn-success">Annuler</button></a>
+            <br><br>
+            {{ form_end(formGroupnew) }}
+        </div>
+{% endblock %}    

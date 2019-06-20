@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<br><br><br><br><br><br><br><br>
+<div class="card text-center" style="margin-left:250px;margin-right:250px;">
+         <div class="card-header">
+            <div class="alert alert-danger">
+                <ul>Ce Groupe contien déja 8 personne</ul>
+            </div>
+            <h5>Statut étudiant<h5>
+            </div>
+            <div class="card-body">
+                <a class="btn btn-danger" href="{{ path('secre_show_etd') }}"><button type="button" class="btn btn-success">Annuler</button></a>
+            </div>        
+</div>
+{% endblock %}    
+
+      

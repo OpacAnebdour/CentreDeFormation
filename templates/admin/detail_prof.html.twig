@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<br><br><br><br><br><br><br><br>
+<div class="card text-center" style="margin-left:250px;margin-right:250px;">
+         <div class="card-header">
+            <h5>Statut étudiant<h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Détail du professeur</p>Mr/Mme <strong>{{ prof.nomProf }} {{ prof.prenomProf }}</strong></p>
+                <p class="card-text"></p>
+                <a class="btn btn-primary" href="{{ path('prof_contrat', {'id': prof.id}) }}">Imprimer le contrat</a> 
+                <a class="btn btn-danger" href="{{ path('show_prof') }}"><button type="button" class="btn btn-success">Annuler</button></a>
+            </div>        
+</div>
+{% endblock %}    
+
+      

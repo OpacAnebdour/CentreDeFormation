@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<br><br><br><br><br><br><br><br>
+<div class="card text-center" style="margin-left:250px;margin-right:250px;">
+         <div class="card-header">
+            <h5>Statut étudiant<h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Détail du étudiant</p>Mr/Mme <strong>{{ etd.nomEtudiant }} {{ etd.prenomEtudiant }}</strong></p>
+                <p class="card-text"></p>
+                <a class="btn btn-primary" href="{{ path('add_to_group', {'id': etd.id}) }}">Ajouter au Groupe</a> 
+                <a class="btn btn-primary" href="{{ path('blog_facture', {'id': etd.id}) }}">Imprimer la facture</a> 
+                <a class="btn btn-danger" href="{{ path('secretaire') }}"><button type="button" class="btn btn-success">Annuler</button></a>
+            </div>        
+</div>
+{% endblock %}    
+
+      

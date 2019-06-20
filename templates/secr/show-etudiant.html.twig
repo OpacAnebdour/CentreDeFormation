@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="{{ path('secretaire') }}">Gestion Du Centre</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarColor01" style="">
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('eleve_create') }}">Ajouter un étudiant</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('secretaire') }}">Retour</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('secre_show_prof') }}">La liste des professeurs</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            Déconnexion
+                        </a>
+                    </li>    
+            </ul>
+        </div>
+    </nav>
+<div class="container"><br>
+    <h1> La Liste des étudiants :</h1><br>
+    <table id="tabetd" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th scope="row">Nom</th>
+            <th scope="row">Prénom</th>
+            <th scope="row">Date de Naissance</th>
+            <th scope="row">Lieu de Naissance</th>
+            <th scope="row">CIN</th>
+            <th scope="row">Numéro GSM</th>
+            <th scope="row">Numéro GSM (parent)</th>
+            <th scope="row">adresse</th>
+            <th scope="row">Niveau</th>
+            <th>Edit/Détail/X</th> 
+        </tr>
+    </thead>    
+    <tbody>
+        {% for pp in etd %}
+        <tr>
+            <td>{{ pp.nomEtudiant }}</td>
+            <td>{{ pp.prenomEtudiant }}</td>
+            <td>{{ pp.dateNaissanceEtudiant | date('d/m/Y') }}</td>
+            <td>{{ pp.lieuNaissanceEtudiant }}</td>
+            <td>{{ pp.cinEtudiant }}</td>
+            <td>{{ pp.numTeleEtudiant }}</td>
+            <td>{{ pp.numTeleParent }}</td>
+            <td>{{ pp.adresseEtudiant }}</td>
+            <td>{{ pp.niveauEtudiant }}</td>
+            <td>
+                <a href="{{ path('eleve_edit', {'id': pp.id}) }}" class="btn btn-dark">edit</a>
+                <a href="{{ path('etd_detail', {'id': pp.id}) }}" class="btn btn-light">détail</a>
+                <a href="#" class="btn btn-danger delete-etd" data-etd="{{ pp.id }}">Delete</a>
+            </td>
+        </tr>
+       {% endfor %}
+    </tbody>      
+    </table>    
+</div>
+{% endblock %}
+{% block javascripts %}
+<script src="/delete/mainn.js"></script>
+{% endblock %}

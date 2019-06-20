@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+    <h1>Inscrption sur le site</h1>
+<div class="container">
+
+    {{ form_start(form) }}
+    {{ form_row(form.username, {'label':'Nom d\'user','attr': {'placeholder':'username...'}}) }}
+    {{ form_row(form.email, {'label':'email d\'user','attr': {'placeholder':'e-mail...'}}) }} 
+    {{ form_row(form.password, {'label':'password d\'user','attr': {'placeholder':'password...'}}) }}
+    {{ form_row(form.confirm_password, {'attr': {'placeholder':'confirm password...'}}) }}
+
+    <button type="submit" class="btn btn-success">Go</button> 
+    {{ form_end(form) }}
+</div>
+
+{% endblock %}

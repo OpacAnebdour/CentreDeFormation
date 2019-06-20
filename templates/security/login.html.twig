@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Centre{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{{ asset('loginform/cssDoc.css') }}">
+{% endblock %}
+{% block body %}
+<h2>Indentifiez vous:</h2>
+
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="{{ path('secretaire') }}" method="post">
+			<h2>Espace Secrétaire</h2>
+			
+			<h4><span>Espace pour les secrétaires</span></h4>
+			<input type="email" placeholder="Email secrétaire..." />
+			<input type="password" placeholder="Password secrétaire..." />
+            <a href="#">Forgot your password?</a>
+			<button type="submit">Connexion</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="{{ path('security_login') }}" method="post">
+			<h2>Espace Admin</h2>
+			
+			<h4><span>Espace pour l'admin</span></h4>
+			<input placeholder="e-mail..." required name="_username" type="text">
+			<input placeholder="password..." required name="_password" type="password">
+			<a href="#">Forgot your password?</a>
+			<button type="submit">Connexion</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Administrateur</h1><br>
+				<h4>Seul l'Administrateur a l'accès à cette session</h4>
+				<button class="ghost" id="signIn">Ici</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Secrétaire</h1><br>
+				<h4>Seul les secrétaires ont l'accès à cette session</h4>
+				<button class="ghost" id="signUp">Ici</button>
+			</div>
+		</div>
+	</div>
+</div>
+<footer>
+	<p>Gestion - centre de soutien.</p>
+</footer>
+
+
+{% endblock %}

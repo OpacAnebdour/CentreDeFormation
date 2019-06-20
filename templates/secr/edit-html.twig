@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formEtud 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="{{ path('secretaire') }}">Gestion Du Centre</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarColor01" style="">
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('secretaire') }}">Retour</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('secre_show_etd') }}">La liste des étudiants</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('secre_show_prof') }}">La liste des professeurs</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            Déconnexion
+                        </a>
+                    </li>    
+            </ul>
+        </div>
+    </nav>
+        <div class="container">
+            <br>
+         {% if editMode %}
+                <h1> Modifier les informations de cet étudiant </h1>
+        {% else %}    
+                <h1> Ajouter un étudiant </h1>
+        {% endif %}   
+            <br>
+            {{ form_start(formEtud) }}
+
+            {{ form_row(formEtud.nomEtudiant, {'label':'Nom d\'étudiant','attr': {'placeholder':'Nom...'}}) }}
+            {{ form_row(formEtud.prenomEtudiant, {'label':'Prénom d\'étudiant','attr': {'placeholder':'prénom...'}}) }}
+             {{ form_row(formEtud.dateNaissanceEtudiant, {'label':'Date de naissance d\'étudiant','attr': {'min':'1979'}}) }}
+            {{ form_row(formEtud.lieuNaissanceEtudiant, {'label':'Lieu de naissance d\'étudiant','attr': {'placeholder':'Lieu de naissance...'}}) }}
+            {{ form_row(formEtud.cinEtudiant, {'label':'CIN d\'étudiant','attr': {'placeholder':'CIN...'}}) }}
+            {{ form_row(formEtud.numTeleEtudiant, {'label':'Numéro d\'étudiant','attr': {'placeholder':'Numéro...'}}) }}
+            {{ form_row(formEtud.numTeleParent, {'label':'Numéro des parents','attr': {'placeholder':'Numéro des parents...'}}) }}
+            {{ form_row(formEtud.adresseEtudiant, {'label':'Adresse d\'étudiant','attr': {'placeholder':'Adresse...'}}) }}
+            {{ form_row(formEtud.niveauEtudiant, {'label':'Niveau d\'étudiant','attr': {'placeholder':'Niveau...'}}) }}
+
+            <br><br>
+            <button type="submit" class="btn btn-success">
+                {% if editMode %}
+                    Enregister
+                {% else %}    
+                    Ajouter cet étudiant
+                {% endif %}    
+            </button>
+            <a class="navbar-brand" href="{{ path('show_prof') }}"><button type="button" class="btn btn-success">Annuler</button></a>
+            <br><br>
+            {{ form_end(formEtud) }}
+        </div>
+{% endblock %}    

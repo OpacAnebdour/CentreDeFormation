@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="{{ path('secretaire') }}">Gestion Du Centre</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarColor01" style="">
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('eleve_create') }}">Ajouter un étudiant</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('secre_show_etd') }}">La liste des étudiants</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('secretaire') }}">Retour</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            Déconnexion
+                        </a>
+                    </li>    
+            </ul>
+        </div>
+</nav>
+    <div class="container"><br>
+    <h1> La Liste des Professeurs :</h1><br>
+    <table  class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="row">Nom</th>
+            <th scope="row">Prénom</th>
+            <th scope="row">E-mail</th>
+            <th scope="row">CIN</th>
+            <th scope="row">Num Téléphone</th>
+            <th scope="row">Matière</th>
+        </tr>
+    </thead>    
+    <tbody>
+        {% for pp in pShow %}
+        <tr>
+            <td>{{ pp.nomProf }}</td>
+            <td>{{ pp.prenomProf }}</td>
+            <td>{{ pp.emailProf }}</td>
+            <td>{{ pp.cinProf }}</td>
+            <td>{{ pp.numTeleProf }}</td>
+            <td>{{ pp.profMatiere }}</td>
+        </tr>
+       {% endfor %}
+    </tbody>    
+    </table>    
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<br>
+<h1 align="center">La fiche de l'étudiant {{ etudiant.prenomEtudiant }} {{ etudiant.nomEtudiant }}</h1> 
+<div class="card text-center" style="margin-left:250px;margin-right:250px;">
+    <div class="card-header">
+        <h5 style="color : red;">Donnée d'étudiant<h5>
+    </div>
+    <div class="card-body">
+        <h3><strong>ID étudiant</strong></h3> : <h5>{{ etudiant.id }}</h5>
+    </div>        
+</div>
+<br>
+<div class="card text-center" style="margin-left:250px;margin-right:250px;">
+    <div class="card-header">
+        <h5 style="color : red;">Donnée des Groupes<h5>
+    </div>
+        <div class="card-body">
+            <table id="tabGpEt" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="row">ID Groupe</th>
+                        <th scope="row">Nombre d'etudiant</th>
+                        <th>Ajouter/X</th>
+                    </tr>    
+                </thead>  
+                <tbody>  
+                    {% for pp in group %}
+                    <tr>
+                        <td>{{ pp.numeroGroupe }}</td>
+                        <td>{{ pp.nbEtudiant }}</td>
+                        <td>
+                            <a href="{{ path('connect_gp_etd', {'idg': pp.id, 'ide': etudiant.id}) }}" class="btn btn-dark">Ajouter à ce groupe</a>
+                            <a href="#" class="btn btn-danger delete-group" data-group="{{ pp.id }}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>    
+                    {% endfor %}
+                </tbody>      
+            </table>      
+        </div>        
+</div>
+      
+<br>
+<div class="card text-center" style="margin-left:250px;margin-right:250px;">
+    <div class="card-header">
+        <h5 style="color : red;">Créer des groupes<h5>
+    </div>
+        <br>
+        <div class="card-body">
+            <a class="btn btn-primary" href="{{ path('new_groupe') }}">Créer un nouveau groupe</a> 
+            <a class="navbar-brand" href="{{ path('secre_show_etd') }}"><button type="button" class="btn btn-success">Annuler</button></a>
+        </div>        
+        <br>
+</div>
+<br>
+{% endblock %}
+{% block javascripts %}
+<script src="/delete/mainn.js"></script>
+{% endblock %}

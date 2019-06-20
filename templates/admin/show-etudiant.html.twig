@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="{{ path('admin') }}">Gestion Du Centre</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarColor01" style="">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('prof_create') }}">Ajouter un professeur</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('personel_create') }}">Ajouter du personnel</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('show_personel') }}">La liste du personnel</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('show_prof') }}">La liste des professeurs</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('show_etd') }}">La liste des étudiants</a>
+                </li>
+            </ul>
+            {% if app %}
+            <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="{{ path('security_logout') }}" class="nav-link">
+                            Déconnexion
+                        </a>
+                    </li>    
+            </ul>
+            {% endif %}
+        </div>
+    </nav>
+<div class="container"><br>
+    <h1> La Liste des étudiants :</h1><br>
+    <table  class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="row">Nom</th>
+            <th scope="row">Prénom</th>
+            <th scope="row">Date de Naissance</th>
+            <th scope="row">Lieu de Naissance</th>
+            <th scope="row">CIN</th>
+            <th scope="row">Numéro GSM</th>
+            <th scope="row">Numéro GSM (parent)</th>
+            <th scope="row">adresse</th>
+            <th scope="row">Niveau</th>
+            <th scope="row">Détail</th> 
+        </tr>
+    </thead>    
+    <tbody>
+        {% for pp in etd %}
+        <tr>
+            <td>{{ pp.nomEtudiant }}</td>
+            <td>{{ pp.prenomEtudiant }}</td>
+            <td>{{ pp.dateNaissanceEtudiant | date('d/m/Y') }}</td>
+            <td>{{ pp.lieuNaissanceEtudiant }}</td>
+            <td>{{ pp.cinEtudiant }}</td>
+            <td>{{ pp.numTeleEtudiant }}</td>
+            <td>{{ pp.numTeleParent }}</td>
+            <td>{{ pp.adresseEtudiant }}</td>
+            <td>{{ pp.niveauEtudiant }}</td>
+
+            <td><a class="btn btn-danger" href="#">détail</a></td>
+        </tr>
+       {% endfor %}
+    </tbody>    
+    </table>    
+</div>
+{% endblock %}

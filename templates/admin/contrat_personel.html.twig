@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container"><br>
+    <h1> Contrat de la secrétaire :</h1><br>
+    <table  class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="row">Nom</th>
+            <th scope="row">Prénom</th>
+            <th scope="row">E-mail</th>
+            <th scope="row">Adresse</th>
+            <th scope="row">CIN</th>
+        </tr>
+    </thead>    
+    <tbody>
+        <tr>
+            <td>{{ etd.sereNom }}</td>
+            <td>{{ etd.secrPrenom }}</td>
+            <td>{{ etd.emailSecr }}</td>
+            <td>{{ etd.adresseSecr }}</td>
+            <td>{{ etd.cinSecr }}</td>
+
+        </tr>
+    </tbody>      
+    </table> 
+    
+        <br><br><br><br><br><br><br>
+        <p> Signature             ..............</p>   
+</div>
+{% endblock %}

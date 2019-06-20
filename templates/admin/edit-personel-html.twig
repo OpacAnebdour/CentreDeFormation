@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formPersonel 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="{{ path('admin') }}">Gestion Du Centre</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarColor01" style="">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('prof_create') }}">Ajouter un professeur</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('personel_create') }}">Ajouter du personnel</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('show_personel') }}">La liste du personnel</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('show_prof') }}">La liste des professeurs</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('show_etd') }}">La liste des étudiants</a>
+                </li>
+            </ul>
+            {% if app %}
+            <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="{{ path('security_logout') }}" class="nav-link">
+                            Déconnexion
+                        </a>
+                    </li>    
+            </ul>
+            {% endif %}
+        </div>
+    </nav>
+        <div class="container">
+            <br>
+         {% if edit %}
+                <h1> Modifier les informations du personnel </h1>
+        {% else %}    
+                <h1> Ajouter Le personnel </h1>
+        {% endif %}   
+            <br>
+            {{ form_start(formPersonel) }}
+
+            {{ form_row(formPersonel.sereNom, {'label':'Nom de la secrétaire','attr': {'placeholder':'Nom...'}}) }}
+            {{ form_row(formPersonel.secrPrenom, {'label':'Prénom de la secrétaire','attr': {'placeholder':'Prénom...'}}) }}
+            {{ form_row(formPersonel.emailSecr, {'label':'E-mail de la secrétaire','attr': {'placeholder':'email...'}}) }}
+            {{ form_row(formPersonel.adresseSecr, {'label':'adresse de la secrétaire','attr': {'placeholder':'adresse...'}}) }}
+            {{ form_row(formPersonel.password, {'label':'mot de passe pour la secrétaire','attr': {'placeholder':'mot de passe...'}}) }}
+            {{ form_row(formPersonel.username, {'label':'Username de la secrétaire','attr': {'placeholder':'Username ...'}}) }}
+            {{ form_row(formPersonel.cinSecr, {'label':'CIN de la secrétaire','attr': {'placeholder':'CIN...'}}) }}
+           
+           
+            <br><br>
+            <button type="submit" class="btn btn-success">
+                {% if edit %}
+                    Enregister
+                {% else %}    
+                    Ajouter ce personel
+                {% endif %}    
+            </button>
+            <a class="navbar-brand" href="{{ path('admin') }}"><button type="button" class="btn btn-success">Annuler</button></a>
+            <br><br>
+            {{ form_end(formPersonel) }}
+        </div>
+{% endblock %}    
